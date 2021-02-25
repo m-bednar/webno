@@ -210,6 +210,15 @@ declare interface Document extends Node {
    querySelectorAll(selector: string): NodeList;
 }
 
+declare interface Storage {
+   readonly length: number;
+   key(index: number): string;
+   getItem(key: string): string | null;
+   setItem(key: string, value: string): void;
+   removeItem(key: string): void;
+   clear(): void;
+}
+
 declare interface HTMLDocument extends Document {
    title: string;
    cookie: string;
@@ -228,6 +237,9 @@ declare const innerHeight: number;
 declare const innerWidth: number;
 declare const outerHeight: number;
 declare const outerWidth: number;
+
+declare const localStorage: Storage;
+declare const sessionStorage: Storage;
 
 declare function print(): void;
 declare function scroll(opts: ScrollToOptions): void;
