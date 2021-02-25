@@ -1,5 +1,5 @@
 
-# Webno 🥳
+# Webno
 Deno **typescript types** for browser applications.
 Includes most of the ecmascript browser APIs, native functions and other useful types.
 
