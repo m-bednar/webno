@@ -25,6 +25,23 @@ declare interface Attr {
    value: string;
 }
 
+declare interface CSSRule {
+   cssText: string;
+   readonly parentRule: CSSRule | null;
+   readonly parentStyleSheet: unknown;
+}
+
+declare interface CSSStyleDeclaration {
+   cssText: string;
+   readonly length: number;
+   readonly parentRule: CSSRule;
+   getPropertyPriority(name: string): 'important' | '';
+   getPropertyValue(name: string): string;
+   item(index: number): string;
+   removeProperty(name: string): string;
+   setProperty(name: string, value?: string, priority?: 'important'): void;
+}
+
 declare interface Node extends EventTarget {
    readonly baseURI: string;
    readonly childNodes: NodeList;
@@ -110,10 +127,10 @@ declare interface Element extends Node {
    readonly scrollWidth: number;
    scrollLeft: number;
    scrollTop: number;
-   readonly shadowRoot: any;
+   readonly shadowRoot: unknown;
    readonly tagName: string;
    closest(): Element;
-   attachShadow(shadow: any): void;
+   attachShadow(shadow: unknown): void;
    getAttribute(name: string): string | null;
    getAttributeNames(): string[];
    getAttributeNS(namespace: string, name: string): string | null;
@@ -143,11 +160,24 @@ declare interface Element extends Node {
 }
 
 declare interface HTMLElement extends Element {
-   // TODO:
+   accessKey: string;
+   readonly accessKeyLabel: string;
+   contentEditable: string;
+   readonly isContentEditable: boolean;
+   readonly dataset: unknown;
+   hidden: boolean;
+   innerText: string;
+   style: CSSStyleDeclaration;
+   title: string;
+   lang: string;
+   tabIndex: number;
+   blur(): void;
+   click(): void;
+   focus(): void;
 }
 
 declare interface EventHandler {
-   (event: any): void;
+   (event: Event): void;
 }
 
 declare interface EventTarget {
@@ -157,12 +187,41 @@ declare interface EventTarget {
 }
 
 declare interface Document extends Node {
+   body: HTMLElement;
+   readonly activeElement: Element;
+   readonly charSet: string;
+   readonly doctype: string;
+   readonly documentElement: Element;
+   readonly documentURI: string;
+   readonly children: HTMLCollection;
+   readonly firstElementChild: Element | null;
+   readonly lastElementChild: Element | null;
    getElementById(id: string): HTMLElement;
-   // TODO:
+   adoptNode(node: Node): Node;
+   createAttribute(name: string): Attr;
+   createDocumentFragment(): unknown;
+   createElement(tagName: string, options?: unknown): HTMLElement;
+   createElementNS(namespace: string, tagName: string): Element;
+   getElementsByClassName(name: string): HTMLCollection;
+   getElementsByTagName(name: string): HTMLCollection;
+   getElementsByTagNameNS(namespace: string, name: string): NodeList;
+   importNode(node: Node, deep?: boolean): Node;
+   querySelector(selector: string): HTMLElement;
+   querySelectorAll(selector: string): NodeList;
 }
 
 declare interface HTMLDocument extends Document {
-   // TODO:
+   title: string;
+   cookie: string;
+   readonly URL: string;
+   readonly location: Location;
+   readonly referrer: string;
+   close(): void;
+   getElementsByName(name: string): NodeList;
+   hasFocus(): boolean;
+   open(): void;
+   write(text: string): void;
+   writeln(text: string): void;
 }
 
 declare const document: HTMLDocument;
