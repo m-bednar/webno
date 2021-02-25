@@ -224,4 +224,19 @@ declare interface HTMLDocument extends Document {
    writeln(text: string): void;
 }
 
+declare const innerHeight: number;
+declare const innerWidth: number;
+declare const outerHeight: number;
+declare const outerWidth: number;
+
+declare function print(): void;
+declare function scroll(opts: ScrollToOptions): void;
+declare function scroll(x: number, y: number): void;
+declare function scrollBy(opts: ScrollToOptions): void;
+declare function scrollBy(x: number, y: number): void;
+declare function scrollTo(opts: ScrollToOptions): void;
+declare function scrollTo(x: number, y: number): void;
+declare function requestAnimationFrame(cb: (timestamp: number) => void): number;
+declare function cancelAnimationFrame(handle: number): void;
+
 declare const document: HTMLDocument;
